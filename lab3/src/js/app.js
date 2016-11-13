@@ -42,7 +42,7 @@ app.controller("myCtrl", function($scope) {
         return false;
     }
 
-    $scope.isdeleted = function(item) {
+    $scope.isDeleted = function(item) {
         return item.deleted == true;
     }
 
