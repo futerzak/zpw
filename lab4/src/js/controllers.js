@@ -32,9 +32,10 @@ appControllers.controller('GalleryDetailCtrl', function($scope, $http, $routePar
         .then(function(response){
             $scope.gallery = response.data.gallery;
             $scope.title = "Moje podróże: " + $scope.gallery.title;
-            $scope.mainImageUrl = $scope.gallery.photos[0].photoUrl;
-            $scope.steImage = function(imageUrl) {
-                $scope.mainImageUrl = imageUrl.photoUrl
+            $scope.mainPhotoUrl = $scope.gallery.photos[0].photoUrl;
+            $scope.setPhoto = function(photo) {
+                $scope.mainPhotoUrl = photo.photoUrl;
+                console.log("set photo: "+photo.photoTitle)
             }
         },
         function(errResponse) {
