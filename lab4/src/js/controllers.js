@@ -28,10 +28,14 @@ appControllers.controller('GalleryDetailCtrl', function($scope, $http, $routePar
     // $scope.gallery = {};
 
     $http
-		.get("photos/rzym-2015.json")
+		.get("photos/"+$routeParams.galleryId+".json")
         .then(function(response){
             $scope.gallery = response.data.gallery;
             $scope.title = "Moje podróże: " + $scope.gallery.title;
+            $scope.mainImageUrl = $scope.gallery.photos[0].photoUrl;
+            $scope.steImage = function(imageUrl) {
+                $scope.mainImageUrl = imageUrl.photoUrl
+            }
         },
         function(errResponse) {
             console.log('Error response', errResponse);

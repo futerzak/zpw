@@ -1,0 +1,45 @@
+{
+    "gallery":
+        {
+        "title": "Paryż 2015",
+        "id": "paryz-2015",
+        "description": "Kilka dni zwariowanego wypadu do Paryża",
+        "dates": {
+            "start": "2015-05-01",
+            "end": "2015-05-16"
+        },
+        "tags":["rzym","2015", "05"],
+        "photos": [
+            {
+                "photoUrl":"http://placehold.it/1200x800",
+                "thumbnailUrl":"http://placehold.it/200x150",
+                "photoTitle": "Tytuł 1"
+            },
+            {
+                "photoUrl":"http://placehold.it/1200x800",
+                "thumbnailUrl":"http://placehold.it/200x150",
+                "photoTitle": "Tytuł 2"
+            },
+            {
+                "photoUrl":"http://placehold.it/1200x800",
+                "thumbnailUrl":"http://placehold.it/200x150",
+                "photoTitle": "Tytuł 3"
+            },
+            {
+                "photoUrl":"http://placehold.it/1200x800",
+                "thumbnailUrl":"http://placehold.it/200x150",
+                "photoTitle": "Tytuł 4"
+            },
+            {
+                "photoUrl":"http://placehold.it/1200x800",
+                "thumbnailUrl":"http://placehold.it/200x150",
+                "photoTitle": "Tytuł 5"
+            },
+            {
+                "photoUrl":"http://placehold.it/1200x800",
+                "thumbnailUrl":"http://placehold.it/200x150",
+                "photoTitle": "Tytuł 6"
+            }
+        ]
+    }
+}
