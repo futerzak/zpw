@@ -2,7 +2,7 @@
     "gallery":
         {
         "title": "Rzym 2015",
-        "id": "rzym-2015",
+        "galleryId": "rzym-2015",
         "description": "Kilka dni zwariowanego wypadu do Rzymu",
         "dates": {
             "start": "2015-05-01",
