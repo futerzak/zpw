@@ -18,11 +18,25 @@ appControllers.controller('GalleryListCtrl', function($scope, $http) {
 		}
 	);
 
-	$scope.title = "Moja galeria zdjęć"
-	$scope.query = ''
+	$scope.title = "Moja galeria zdjęć";
+	$scope.query = '';
 
 });
 
-appControllers.controller('GalleryDetailCtrl', function($scope, $routeParams) {
-	$scope.galleryId = $routeParams.galleryId; }
-);
+appControllers.controller('GalleryDetailCtrl', function($scope, $http, $routeParams) {
+
+    // $scope.gallery = {};
+
+    $http
+		.get("photos/rzym-2015.json")
+        .then(function(response){
+            $scope.gallery = response.data.gallery;
+            $scope.title = "Moje podróże: " + $scope.gallery.title;
+        },
+        function(errResponse) {
+            console.log('Error response', errResponse);
+        });
+
+
+    $scope.galleryId = $routeParams.galleryId;
+});

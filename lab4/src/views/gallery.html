@@ -1,1 +1,17 @@
-Podstrona galerii <span>{{galleryId}}</span>
+<div class="row">
+    <h2>{{title}}</h2>
+    <div class="col-md-12">
+        <p>{{gallery.dates.start}} - {{gallery.dates.end}}</p>
+        <p>{{gallery.description}}</p>
+        <div class="btn-group inline pull-left" ng-repeat="tag in gallery.tags">
+            <button class="btn btn-xs btn-primary">{{tag}}</button>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <img class="img-responsive" ng-src="{{gallery.photos[1].photoUrl}}" />
+        <div class="col-sm-2 col-md-2" ng-repeat="photo in gallery.photos">
+            <img  class="img-thumbnail" ng-src="{{photo.thumbnailUrl}}" />
+        </div>
+    </div>
+
+</div>
