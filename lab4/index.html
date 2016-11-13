@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="portfolioApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/angular-resource.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+</head>
+
+<body ng-app="portfolioApp" ng-controller="GalleryListCtrl">
+<div>
+    <h1>{{title}}</h1>
+    <br/>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Sortuj:</label>
+                <select ng-model="orderProp" ng-options="sort as sort.label for sort in sortList"> </select>
+                <h5 ng-if="orderProp">Galerie ułożone: {{orderProp.label}}</h5>
+            </div>
+
+            <div class="col-md-6">
+                <label>Szukaj:</label>
+                <input ng-model="query">
+                <div ng-if="query.length > 0"><h5>Wyniki wyszukiwania: {{query}}</h5></div>
+                <div ng-if="query.length == 0"><h5>Ilość elementów: {{galleries.length}} </h5></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<br/>
+
+<div class="container">
+    <div ng-view></div>
+</div>
+
+</body>
+</html>

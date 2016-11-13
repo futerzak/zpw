@@ -1,0 +1,62 @@
+{
+  "galleries": [
+    {
+      "id": "rzym-2015",
+      "title": "Rzym",
+      "when": "2015-05-10",
+      "thumbnailUrl": "http://placehold.it/400x200",
+      "description": "Kilka dni zwariowanego wypadu do Rzymu."
+    },
+    {
+      "id": "maroko-2015",
+      "title": "Maroko",
+      "when": "2015-08-04",
+      "thumbnailUrl": "http://placehold.it/400x200",
+      "description": "Kilka dni zwariowanego wypadu do Maroko."
+    },
+    {
+      "id": "paryz-2015",
+      "title": "Paryż",
+      "when": "2015-10-01",
+      "thumbnailUrl": "http://placehold.it/400x200",
+      "description": "Kilka dni zwariowanego wypadu do Paryża."
+    },
+    {
+      "id": "tokio-2016",
+      "title": "Tokio",
+      "when": "2016-06-09",
+      "thumbnailUrl": "http://placehold.it/400x200",
+      "description": "Kilka dni zwariowanego wypadu do Tokio."
+    },
+    {
+      "id": "nowy-jork-2016",
+      "title": "Nowy Jork",
+      "when": "2016-08-14",
+      "thumbnailUrl": "http://placehold.it/400x200",
+      "description": "Kilka dni zwariowanego wypadu do Nowego Jorku."
+
+    },
+    {
+      "id": "sydney-2016",
+      "title": "Sydney",
+      "when": "2016-11-04",
+      "thumbnailUrl": "http://placehold.it/400x200",
+      "description": "Kilka dni zwariowanego wypadu do Sydney."
+    }
+  ],
+
+  "sortList": [
+    {
+      "label":"Alfabetycznie",
+      "value":"title"
+    },
+    {
+      "label":"Chronologicznie",
+      "value":"when"
+    },
+    {
+      "label":"Od najnowszej",
+      "value":"-when"
+    }
+  ]
+}
