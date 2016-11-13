@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4" ng-repeat="gallery in galleries | filter:query | orderBy: orderProp.value">
+    <div class="col-sm-4 gallery-listing" ng-repeat="gallery in galleries | filter:query | orderBy: orderProp.value">
         <a href="#/galleries/{{gallery.galleryId}}">
             <img ng-src="{{gallery.thumbnailUrl}}" class="img-responsive">
         </a>
