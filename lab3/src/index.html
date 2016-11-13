@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+
+<div class="container" ng-app="myShoppingList" ng-controller="myCtrl">
+    <div ng-repeat="(userId, user) in users">
+        <h2>{{user.name}}</h2>
+        <table class="table table-hover">
+        <thead>
+          <tr>
+              <th></th>
+            <th>nazwa artykułu</th>
+            <th>data dodania</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="success" ng-repeat="(productId, product) in user.products | filter:{deleted: false, archived: false}">
+            <td><input ng-model="product.deleted" ng-change="addToArchive(userId, productId)" type="checkbox"/> => {{product.deleted}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.date}}</td>
+            <td><span ng-click="removeProduct(userId, productId)">&times;</span></td>
+          </tr>
+          <tr class="" ng-repeat="(productId, product) in user.products | filter:{deleted: true, archived: false}">
+            <td><input ng-model="product.deleted" ng-change="addToArchive(userId, productId)" type="checkbox"/> => {{product.deleted}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.date}}</td>
+            <td><span ng-click="removeProduct(userId, productId)">&times;</span></td>
+          </tr>
+          <!-- <tr class="danger" ng-repeat="(productId, product) in user.products | filter:{deleted: true, archived: true}">
+            <td><input ng-model="product.deleted" ng-change="addToArchive(userId, productId)" type="checkbox"/> => {{product.deleted}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.date}}</td>
+            <td><span ng-click="removeProduct(userId, productId)">&times;</span></td>
+          </tr> -->
+        </tbody>
+        </table>
+        <input ng-model="newProduct" />
+        <button ng-click="addProduct(userId,newProduct)">Dodaj</button>
+        <button ng-click="restoreFromArchive(userId)">Przywróć</button>
+        <p>{{errortext}}</p>
+
+        <p>{{user.name}}</p>
+        <span ng-repeat="product in user.products">
+            <p>{{product}}</p>
+        </span>
+    </div>
+</div>
+
+</body>
+</html>
