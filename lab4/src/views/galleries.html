@@ -1,0 +1,24 @@
+<div class="row">
+    <h1>{{title}}</h1>
+    <div class="col-md-6">
+        <label>Sortuj:</label>
+        <select ng-model="orderProp" ng-options="sort as sort.label for sort in sortList"> </select>
+        <h5 ng-if="orderProp">Galerie ułożone: {{orderProp.label}}</h5>
+    </div>
+
+    <div class="col-md-6">
+        <label>Szukaj: </label>
+        <input ng-model="query">
+        <div ng-if="query.length > 0"><h5>Wyniki wyszukiwania: {{query}}</h5></div>
+        <div ng-if="query.length == 0"><h5>Ilość elementów: {{galleries.length}} </h5></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4" ng-repeat="gallery in galleries | filter:query | orderBy: orderProp.value">
+        <a href="#/galleries/{{gallery.id}}">
+            <img ng-src="{{gallery.thumbnailUrl}}" class="img-responsive">
+        </a>
+        <h3><a href="#/galleries/{{gallery.id}}">{{gallery.title}}</a></h3>
+        <p><strong>Kiedy:</strong> {{gallery.when | date: 'dd MMMM yyyy' }}</p>
+    </div>
+</div>
