@@ -3,7 +3,7 @@ var appControllers = angular.module('appControllers',[]);
 
 appControllers.controller('GalleryListCtrl', ['$scope', '$http', 'Gallery', function($scope, $http, Gallery) {
 
-    $scope.galleries = Gallery.query();
+    // $scope.galleries = Gallery.query();
 
 	$scope.galleries = [];
 	$scope.sortList = [];
