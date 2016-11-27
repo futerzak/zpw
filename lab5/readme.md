@@ -1,0 +1,2 @@
+* jsnode serwer
+* deployd
