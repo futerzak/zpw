@@ -15,11 +15,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 gallery-listing" ng-repeat="product in productsFiltered | filter:query | filter:categorySelected.id">
+    <div class="col-sm-4 gallery-listing" ng-repeat="product in products | filter:query ">
         <a href="#/product/{{product.id}}">
             <img ng-src="{{product.thumbnailUrl}}" class="img-responsive">
         </a>
-        <h3><a href="#/product/{{product.id}}">{{product.name}} {{product.id}}</a></h3>
+        <h3><a href="#/product/{{product.id}}">{{product.name}}</a></h3>
         <p><strong>Cena:</strong> {{product.price}}</p>
         <p><strong>Kategoria:</strong> {{product.category}}</p>
         <p><button class="btn btn-info" ng-click="addToCart(product.id)">Dodaj do koszyka</button></p>

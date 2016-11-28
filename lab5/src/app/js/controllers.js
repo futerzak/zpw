@@ -4,7 +4,6 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
 
     $scope.title = "Produkty";
 
-    $scope.sortList = [];
     $scope.categories = [
         {
             id: 0,
@@ -32,19 +31,32 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
 
     $scope.products = [];
 
-    for(var i=0;i<100;i++){
-        var tempProducts = ["Gruszka", "Jabłko", "Orzechy", "Kapusta", "Ogórek zielony"];
-        $scope.products.push({
-            id: i,
-            name: tempProducts[Math.floor((Math.random() * 10) % 5)],
-            price: Math.round((Math.random() * 1000))/100,
-            category: Math.floor((Math.random() * 10) % 5),
-            thumbnailUrl: "http://placehold.it/200x100/#ff4422/#0066ff"
+    $scope.getProducts = function() {
+        $http
+        .get("http://localhost:2403/products")
+        .then(function(response){
+            $scope.products = response.data;
+            console.log($scope.products);
+            products = response.data;
+        },
+        function(errResponse) {
+            console.log('Error response', errResponse);
         });
     }
 
+    $scope.getProducts();
+    console.log("prod: "+$scope.getProducts());
 
-    $scope.productsNumber = $scope.products.length;
+    $scope.getProductsNumber = function(){
+        var productsNumber=0;
+        for(var index in $scope.getProducts()) {
+            productsNumber++;
+        }
+        return productsNumber;
+    }
+
+    $scope.productsNumber = $scope.getProductsNumber();
+    console.log($scope.productsNumber);
 
     $scope.$watch('currentPage + productsPerPage', function() {
         var begin = parseInt($scope.currentPage - 1) * parseInt($scope.productsPerPage);
@@ -80,18 +92,35 @@ appControllers.controller('productController',function($scope, $http, $routePara
         }
 });
 
-appControllers.controller('addProduct',function($scope) {
+appControllers.controller('addProduct',function($scope, $http) {
 
         $scope.title = "Dodaj produkt";
 
         $scope.addProduct = function() {
-            $scope.products.push({
-                id: $scope.products.length+1,
-                name: $scope.product.name,
-                price: $scope.product.price,
-                category: $scope.product.category
-            });
-        };
+            $http
+                .post("http://localhost:2403/products", {
+                    name: $scope.product.name,
+                    price: $scope.product.price,
+                    category: $scope.product.category
+                })
+                .then(function(response){
+                    var data = {};
+                    $scope.products = $scope.getProducts(data);
+                    console.log($scope.products);
+                },
+                function(errResponse) {
+                    console.log('Error response', errResponse);
+                });
+        }
+
+        // $scope.addProduct = function() {
+        //     $scope.products.push({
+        //         id: $scope.products.length+1,
+        //         name: $scope.product.name,
+        //         price: $scope.product.price,
+        //         category: $scope.product.category
+        //     });
+        // };
 
 });
 
