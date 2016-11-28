@@ -2,7 +2,7 @@
     <h1>{{title}}</h1>
     <div class="col-md-6">
         <label>Kategorie:</label>
-        <select ng-model="categorySelected" ng-options="category as category.name for category in categories"> </select>
+        <select ng-model="categorySelected" ng-options="category as category.name for category in categories track by category.id"> </select>
         <h5 ng-if="categorySelected">Wybrana kategoria: {{categorySelected.name}}</h5>
 
     </div>
@@ -15,10 +15,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 gallery-listing" ng-repeat="product in products | filter:query ">
+    <div class="col-sm-4 gallery-listing" ng-repeat="product in products | filter:query | pagination:beginPage ">
         <a href="#/product/{{product.id}}">
             <img ng-src="{{product.thumbnailUrl}}" class="img-responsive">
         </a>
+
         <h3><a href="#/product/{{product.id}}">{{product.name}}</a></h3>
         <p><strong>Cena:</strong> {{product.price}}</p>
         <p><strong>Kategoria:</strong> {{product.category}}</p>
@@ -28,7 +29,7 @@
         <ul uib-pagination
             ng-model="currentPage"
             class="pagination-sm"
-            total-items="productsNumber"
+            total-items="products.length"
             max-size="maxSize"
             items-per-page="productsPerPage"
             boundary-link-numbers="true"

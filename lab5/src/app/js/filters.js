@@ -14,3 +14,11 @@ appFilters.filter('categoryFilter', ['$scope',function() {
        return $scope.products;
    }}]
 );
+
+appFilters.filter('pagination', function(){
+    return function(products, begin) {
+
+            return products.slice(parseInt(begin), parseInt(begin)+3);
+
+    }
+});

@@ -4,24 +4,16 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
 
     $scope.title = "Produkty";
 
-    $scope.categories = [
-        {
-            id: 0,
-            name: "warzywa"
+    $scope.categories = [];
+
+    $http.
+        get("http://localhost:2403/categories")
+        .then(function(response) {
+            $scope.categories = response.data;
         },
-        {
-            id: 1,
-            name: "owoce"
-        },
-        {
-            id: 2,
-            name: "napoje"
-        },
-        {
-            id: 3,
-            name: "pieczywo"
-        },
-    ];
+        function(errResponse){
+            console.log('Error response', errResponse);
+        });
 
     $scope.query = '';
 
@@ -33,37 +25,18 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
 
     $scope.getProducts = function() {
         $http
-        .get("http://localhost:2403/products")
-        .then(function(response){
-            $scope.products = response.data;
-            console.log($scope.products);
-            products = response.data;
-        },
-        function(errResponse) {
-            console.log('Error response', errResponse);
-        });
+            .get("http://localhost:2403/products")
+            .then(function(response){
+                $scope.products = response.data;
+                console.log($scope.products);
+                $scope. = response.data;
+            },
+            function(errResponse) {
+                console.log('Error response', errResponse);
+            });
     }
-
     $scope.getProducts();
-    console.log("prod: "+$scope.getProducts());
 
-    $scope.getProductsNumber = function(){
-        var productsNumber=0;
-        for(var index in $scope.getProducts()) {
-            productsNumber++;
-        }
-        return productsNumber;
-    }
-
-    $scope.productsNumber = $scope.getProductsNumber();
-    console.log($scope.productsNumber);
-
-    $scope.$watch('currentPage + productsPerPage', function() {
-        var begin = parseInt($scope.currentPage - 1) * parseInt($scope.productsPerPage);
-        var end = parseInt(begin) + parseInt($scope.productsPerPage);
-
-        $scope.productsFiltered = $scope.products.slice(begin, end);
-    });
 
 
     $scope.addToCart = function (productId) {
@@ -77,8 +50,17 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
                 });
             }
         }
-        console.log()
     };
+
+    $scope.getBeginPage = function() {
+
+            var begin = parseInt($scope.currentPage - 1) * parseInt($scope.productsPerPage);
+            var end = parseInt(begin) + parseInt($scope.productsPerPage);
+            return  begin;
+
+    }
+    $scope.beginPage = $scope.getBeginPage();
+
 });
 
 appControllers.controller('productController',function($scope, $http, $routeParams) {
@@ -112,16 +94,6 @@ appControllers.controller('addProduct',function($scope, $http) {
                     console.log('Error response', errResponse);
                 });
         }
-
-        // $scope.addProduct = function() {
-        //     $scope.products.push({
-        //         id: $scope.products.length+1,
-        //         name: $scope.product.name,
-        //         price: $scope.product.price,
-        //         category: $scope.product.category
-        //     });
-        // };
-
 });
 
 appControllers.controller('cartController', function($scope, cartService) {

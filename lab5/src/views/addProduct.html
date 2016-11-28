@@ -6,7 +6,7 @@
         <label for="price">Cena produktu</label>
         <input id="price" ng-model="product.price" />
         <label for="category">Kategoria produktu</label>
-        <select id="category" ng-model="product.category" ng-options="category as category.name for category in categories"> </select>
+        <select id="category" ng-model="product.category" ng-options="category as category.name for category in categories track by category.id"> </select>
         <button ng-click="addProduct()">Dodaj</button>
     </div>
 </div>
