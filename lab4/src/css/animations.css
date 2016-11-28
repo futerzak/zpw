@@ -26,15 +26,15 @@
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
-    }@
-    -moz-keyframes fade-in {
-        from { opacity: 0; }
-        to { opacity: 1; }
-        }@
-        -webkit-keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+}@
+-moz-keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}@
+-webkit-keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 @keyframes fade-out {
     from { opacity: 1; }
     to { opacity: 0; }
@@ -42,12 +42,12 @@
 -moz-keyframes fade-out {
     from { opacity: 1; }
     to { opacity: 0; }
-    }@
-    -webkit-keyframes fade-out {
-        from { opacity: 1; }
-        to { opacity: 0; }
-        }
-    }
+}@
+-webkit-keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
 
 .gallery-listing.ng-enter,
 .gallery-listing.ng-leave,
@@ -65,5 +65,5 @@
 .gallery-listing.ng-enter.ng-enter-active,
 .gallery-listing.ng-leave
 {
-opacity: 1;
+    opacity: 1;
 }

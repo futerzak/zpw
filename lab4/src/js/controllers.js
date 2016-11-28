@@ -39,12 +39,12 @@ appControllers.controller(
     		.get("photos/"+$routeParams.galleryId+".json")
             .then(function(response){
                 $scope.gallery = response.data.gallery;
-                $scope.title = "Moje podróże: " + $scope.gallery.title;
-                $scope.mainPhotoUrl = $scope.gallery.photos[0].photoUrl;
-                $scope.setPhoto = function(photo) {
-                    $scope.mainPhotoUrl = photo.photoUrl;
-                    console.log("set photo: "+photo.photoTitle)
-                }
+				$scope.title = "Moje podróże: " + $scope.gallery.title;
+				$scope.mainPhotoUrl = $scope.gallery.photos[0].photoUrl;
+				$scope.setPhoto = function(photo) {
+					$scope.mainPhotoUrl = photo.photoUrl;
+					console.log("set photo: " + photo.photoTitle)
+				}
             },
             function(errResponse) {
                 console.log('Error response', errResponse);
