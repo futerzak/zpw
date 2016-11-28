@@ -2,7 +2,7 @@
     "gallery":
         {
         "title": "Tokio 2016",
-        "id": "tokio-2016",
+        "galleryId": "tokio-2016",
         "description": "Kilka dni zwariowanego wypadu do Rzymu",
         "dates": {
             "start": "2015-05-01",

@@ -25,7 +25,7 @@ appFilters.filter('monthName', function() {
  * @input day in format 'EEEE'
  * @type {Object}
  */
-appFilters.filter(dayName, function() {
+appFilters.filter('dayName', function() {
     return dayNames = {
         Monday: 'poniedziałek',
         Tuesday: 'wtorek',

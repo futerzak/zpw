@@ -2,7 +2,7 @@
     "gallery":
         {
         "title": "Paryż 2015",
-        "id": "paryz-2015",
+        "galleryId": "paryz-2015",
         "description": "Kilka dni zwariowanego wypadu do Paryża",
         "dates": {
             "start": "2015-05-01",

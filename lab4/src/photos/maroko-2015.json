@@ -2,7 +2,7 @@
     "gallery":
         {
         "title": "Maroko 2015",
-        "id": "maroko-2015",
+        "galleryId": "maroko-2015",
         "description": "Kilka dni zwariowanego wypadu do Rzymu",
         "dates": {
             "start": "2015-05-01",

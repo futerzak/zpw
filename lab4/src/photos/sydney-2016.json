@@ -2,7 +2,7 @@
     "gallery":
         {
         "title": "Sydney 2016",
-        "id": "sydney-2016",
+        "galleryId": "sydney-2016",
         "description": "Kilka dni zwariowanego wypadu do Sydney",
         "dates": {
             "start": "2015-05-01",

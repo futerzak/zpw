@@ -2,7 +2,7 @@
     "gallery":
         {
         "title": "Nowy Jork 2016",
-        "id": "nowy-jork-2016",
+        "galleryId": "nowy-jork-2016",
         "description": "Kilka dni zwariowanego wypadu do Nowego Jorku",
         "dates": {
             "start": "2015-05-01",
