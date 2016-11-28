@@ -2,8 +2,8 @@ var groceryStoreApp = angular.module(
     'groceryStoreApp',
     [
         'ngRoute',
-        'appFilters',
         'appControllers',
+        'appFilters',
         'appServices',
         'appDirectives',
         'appProviders',
@@ -26,6 +26,10 @@ groceryStoreApp.config(['$routeProvider', function($routeProvider) {
         }).when('/cart',{
             templateUrl: 'views/cart.html',
             controller: 'cartController'
+        }).
+        when('/addProduct', {
+            templateUrl: 'views/addProduct.html',
+            controller: 'addProduct'
         }).
         otherwise({redirectTo: '/'});
 }]);

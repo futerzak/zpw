@@ -7,7 +7,7 @@
                 <th>Nazwa</th>
                 <th>Cena</th>
                 <th>kategoria</th>
-                <th></th>
+                <!-- <th></th> -->
             </tr>
             </thead>
             <tbody>
@@ -15,8 +15,10 @@
                 <td>{{product.name}}</td>
                 <td>{{product.price}}</td>
                 <td>{{product.category}}</td>
-                <td><button class="btn btn-danger">&times;</button></td>
+                <!-- <td><button class="btn btn-danger" ng-click="remove(product.id)">&times;</button></td> -->
             </tr>
     </div>
-
+    <div class="col-md-12">
+        <a href="#/"><button class="btn btn-primary">Kontynuuj zakupy</button></a>
+    </div>
 </div>

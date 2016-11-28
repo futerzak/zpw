@@ -11,18 +11,18 @@
         <label>Szukaj: </label>
         <input ng-model="query">
         <div ng-if="query.length > 0"><h5>Wyniki wyszukiwania: {{query}}</h5></div>
-        <div ng-if="query.length == 0"><h5>Ilość elementów: {{galleries.length}} </h5></div>
+        <div ng-if="query.length == 0"><h5>Ilość elementów: {{products.length}} </h5></div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 gallery-listing" ng-repeat="product in productsFiltered ">
+    <div class="col-sm-4 gallery-listing" ng-repeat="product in productsFiltered | filter:query | filter:categorySelected.id">
         <a href="#/product/{{product.id}}">
             <img ng-src="{{product.thumbnailUrl}}" class="img-responsive">
         </a>
-        <h3><a href="#/galleries/{{product.id}}">{{product.name}} {{product.id}}</a></h3>
+        <h3><a href="#/product/{{product.id}}">{{product.name}} {{product.id}}</a></h3>
         <p><strong>Cena:</strong> {{product.price}}</p>
         <p><strong>Kategoria:</strong> {{product.category}}</p>
-        <p><button class="btn btn-info" ng-click="addToCart(product)">Dodaj do koszyka</button></p>
+        <p><button class="btn btn-info" ng-click="addToCart(product.id)">Dodaj do koszyka</button></p>
     </div>
     <div class="col-md-12">
         <ul uib-pagination
@@ -37,6 +37,8 @@
             first-text="&laquo;"
             last-text="&raquo;">
         </ul>
-
+        <div class="col-md-12">
+            <a href="#/cart"><button class="btn btn-primary">Zakończ zakupy</button></a>
+        </div>
     </div>
 </div>

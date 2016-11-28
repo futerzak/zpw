@@ -1,9 +1,8 @@
-var appServices = angular.module('appServices', ['ngResource']);
+var appServices = angular.module('appServices', []);
 
-appServices.factory('cartService',  function($resource) {
+appServices.factory('cartService',  function() {
     return {
         products: []
     };
 
 });
-
