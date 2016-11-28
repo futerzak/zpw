@@ -1,28 +1,35 @@
 <!doctype html>
-<html ng-app="portfolioApp" ng-controller="GalleryListCtrl">
+<html ng-app="groceryStoreApp" ng-controller="productsController">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Moja app</title>
         <!-- styles -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="vendors/css/bootstrap.min.css" />
         <!-- scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-        <script src="app/js/angular-route.min.js"></script>
-        <script src="app/js/angular-animate.min.js"></script>
-        <script src="app/js/angular-resource.min.js"></script>
-        <script src="app/js/controllers.js"></script>
+        <script src="vendors/js/jquery.min.js"></script>
+        <script src="vendors/js/bootstrap.min.js"></script>
+        <script src="vendors/js/angular.min.js"></script>
+        <script src="vendors/js/angular-resource.min.js"></script>
+        <script src="vendors/js/angular-route.min.js"></script>
+        <script src="vendors/js/angular-animate.min.js"></script>
+        <script src="vendors/js/ui-bootstrap-tpls-2.3.0.min.js"></script>
+        <script src="vendors/js/angular-sanitize.min.js"></script>
         <script src="app/js/filters.js"></script>
+        <script src="app/js/providers.js"></script>
         <script src="app/js/services.js"></script>
+        <script src="app/js/directives.js"></script>
+        <script src="app/js/controllers.js"></script>
         <script src="app/js/app.js"></script>
     </head>
 
     <body>
-        <div class="row">
-            <h1>{{title}}</h1>
-            <div class="col-md-6">
+        <div class="container">
+           <div class="view-container">
+               <div class="view-container">
+                    <div class="view-frame" ng-view>
+                    </div>
+               </div>
             </div>
         </div>
     </body>

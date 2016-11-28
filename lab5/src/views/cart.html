@@ -1,0 +1,22 @@
+<div class="row">
+    <h2>{{title}}</h2>
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>kategoria</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in cartProducts">
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.category}}</td>
+                <td><button class="btn btn-danger">&times;</button></td>
+            </tr>
+    </div>
+
+</div>
