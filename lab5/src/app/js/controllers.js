@@ -1,6 +1,6 @@
-var appControllers = angular.module('appControllers',[]);
+var appControllers = angular.module('appControllers', ['appFilters']);
 
-appControllers.controller('productsController',function($scope, $http, $filter, cartService) {
+appControllers.controller('productsController', ['$scope', '$http', '$filter', 'cartService', 'filterFilter' , function($scope, $http, $filter, cartService, filterFilter) {
 
     $scope.title = "Produkty";
 
@@ -15,27 +15,16 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
             console.log('Error response', errResponse);
         });
 
-    $scope.query = '';
-
-    $scope.currentPage = 1;
-    $scope.productsPerPage = 3;
-    $scope.maxSize = 5;
-
     $scope.products = [];
 
-    $scope.getProducts = function() {
-        $http
-            .get("http://localhost:2403/products")
-            .then(function(response){
-                $scope.products = response.data;
-                console.log($scope.products);
-                $scope. = response.data;
-            },
-            function(errResponse) {
-                console.log('Error response', errResponse);
-            });
-    }
-    $scope.getProducts();
+    $http
+        .get("http://localhost:2403/products")
+        .then(function(response){
+            $scope.products = response.data;
+        },
+        function(errResponse) {
+            console.log('Error response', errResponse);
+        });
 
 
 
@@ -52,16 +41,35 @@ appControllers.controller('productsController',function($scope, $http, $filter, 
         }
     };
 
-    $scope.getBeginPage = function() {
+    $scope.currentPage = 1;
+    $scope.productsPerPage = 3;
+    $scope.maxSize = 5;
 
-            var begin = parseInt($scope.currentPage - 1) * parseInt($scope.productsPerPage);
-            var end = parseInt(begin) + parseInt($scope.productsPerPage);
-            return  begin;
+    $scope.search = {};
+    $scope.search.$ = '';
 
-    }
-    $scope.beginPage = $scope.getBeginPage();
+    $scope.resetFilters = function () {
+        $scope.search = {};
+    };
 
-});
+    $scope.$watch('products', function () {
+        $scope.filtered = $scope.products;
+        $scope.products = $scope.filtered;
+        $scope.totalItems = $scope.products.length;
+        $scope.numberOfPages = Math.ceil($scope.totalItems / $scope.productsPerPage);
+    })
+
+
+    $scope.$watch('search', function (newVal, oldVal) {
+        $scope.filtered = $scope.products;
+		$scope.filtered = filterFilter($scope.products, newVal);
+        console.log("filtered" + $scope.filtered);
+		$scope.totalItems = $scope.filtered.length;
+		$scope.numberOfPages = Math.ceil($scope.totalItems / $scope.productsPerPage);
+		$scope.currentPage = 1;
+	}, true);
+
+}]);
 
 appControllers.controller('productController',function($scope, $http, $routeParams) {
 
@@ -86,9 +94,14 @@ appControllers.controller('addProduct',function($scope, $http) {
                     category: $scope.product.category
                 })
                 .then(function(response){
-                    var data = {};
-                    $scope.products = $scope.getProducts(data);
-                    console.log($scope.products);
+                    $http
+                        .get("http://localhost:2403/products")
+                        .then(function(response){
+                            $scope.products = response.data;
+                        },
+                        function(errResponse) {
+                            console.log('Error response', errResponse);
+                        });
                 },
                 function(errResponse) {
                     console.log('Error response', errResponse);

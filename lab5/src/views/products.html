@@ -1,21 +1,21 @@
 <div class="row">
     <h1>{{title}}</h1>
+    <p><strong><a href="" ng-click="resetFilters()">Show All</a></strong></p>
     <div class="col-md-6">
         <label>Kategorie:</label>
-        <select ng-model="categorySelected" ng-options="category as category.name for category in categories track by category.id"> </select>
-        <h5 ng-if="categorySelected">Wybrana kategoria: {{categorySelected.name}}</h5>
-
+        <select ng-model="search.category.id" ng-options="category as category.name for category in categories track by category.id"> </select>
+        <h5 ng-if="search.category.id">Wybrana kategoria: {{category.name}}</h5>
     </div>
 
     <div class="col-md-6">
         <label>Szukaj: </label>
-        <input ng-model="query">
-        <div ng-if="query.length > 0"><h5>Wyniki wyszukiwania: {{query}}</h5></div>
-        <div ng-if="query.length == 0"><h5>Ilość elementów: {{products.length}} </h5></div>
+        <input ng-model="search.$">
+        <div ng-if="search.$.length > 0"><h5>Wyniki wyszukiwania: {{search.$}}</h5></div>
+        <div ng-if="search.$.length == 0"><h5>Ilość elementów: {{totalItems}} </h5></div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 gallery-listing" ng-repeat="product in products | filter:query | pagination:beginPage ">
+    <div class="col-sm-4 gallery-listing" ng-repeat="product in filtered | filter:search | limitTo:productsPerPage ">
         <a href="#/product/{{product.id}}">
             <img ng-src="{{product.thumbnailUrl}}" class="img-responsive">
         </a>
@@ -29,8 +29,8 @@
         <ul uib-pagination
             ng-model="currentPage"
             class="pagination-sm"
-            total-items="products.length"
-            max-size="maxSize"
+            total-items="totalItems"
+            max-size="numberOfPages"
             items-per-page="productsPerPage"
             boundary-link-numbers="true"
             previous-text="&lsaquo;"

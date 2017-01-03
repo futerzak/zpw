@@ -1,4 +1,4 @@
-var appFilters = angular.module('appFilters',[]);
+var appFilters = angular.module('appFilters', []);
 
 appFilters.filter('monthName', function() {
     return function(monthNumber) {
@@ -37,4 +37,14 @@ appFilters.filter('dayName', function() {
     };
 
     return dayNames[dayName];
-})
+});
+
+appFilters.filter('startFrom', function () {
+	return function (input, start) {
+		if (input) {
+			start = +start;
+			return input.slice(start);
+		}
+		return [];
+	};
+});
