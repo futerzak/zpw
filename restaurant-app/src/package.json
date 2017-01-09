@@ -1,0 +1,21 @@
+{
+  "name": "restaurantApp",
+  "description": "Angular based restuarant app",
+  "version": "0.0.1",
+  "author": "Michał Topór-Futer <futerzak@gmail.com>",
+  "contributors": [
+    "Michał Topór-Futer <futerzak@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.7.2",
+    "mongodb": "^2.2.19"
+  },
+  "scripts": {
+    "start": "npm install && node index.js"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
