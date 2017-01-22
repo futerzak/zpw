@@ -7,24 +7,21 @@ const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 
 const app = express();
+
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-app.use((req,res,next) => {
-    req.db = db;
-    next();
-});
-
-app.use(express.static("angular"));
 
 app.get("/api", (req, res) => {
     res.send("ok");
 });
 
-mongoose.connect('mongodb://localhost:27017/restaurantApp');
+mongoose.connect('mongodb://mongo:27017/restaurantApp');
 
 const models = require('./models')(mongoose);
 
+const route = require('./route.js')(app, models);
 
+app.use(express.static("../angular"));
 
 
 io.on('connection', (socket) => {

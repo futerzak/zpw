@@ -17,7 +17,7 @@
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "start": "npm install && nodemon index.js"
+    "start": "npm install && cd server &&  nodemon index.js"
   },
   "engines": {
     "node": ">= 0.10.0"

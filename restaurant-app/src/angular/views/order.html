@@ -5,6 +5,9 @@
 
         <div ng-repeat="product in order">
             <p>{{product.name}}</p>
+            <p>{{product.id}}</p>
+            <p>{{product.count}}</p>
+            <p><button  class="btn" ng-click="removeElement(product.id)">usuń</button></p>
         </div>
 
     </div>

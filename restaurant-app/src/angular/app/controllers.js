@@ -1,45 +1,98 @@
 var appControllers = angular.module('appControllers', []);
 
 // page controllers
-appControllers.controller('homeController', function($rootScope, $scope, dataService){
+appControllers.controller('homeController', function($rootScope, $scope, dataService, reservationService){
     $rootScope.pageTitle = "Strona domowa";
 
-    dataService.getData('products.json').then((response) => {
+    dataService.getData('products').then((response) => {
         $scope.products = response.data;
     });
     // $dialog.dialog({}).open('views/home/comments.html');
 
+
 });
 
-appControllers.controller('menuController', function(){
-    return;
+appControllers.controller('menuController', function($scope, reservationService, dataService){
+
+    dataService.getData('products').then((response) => {
+        return response.data;
+    })
+    .then((products) => {
+        $scope.addToCart = (productId) => {
+            angular.forEach(products, (product, key) => {
+                if(productId == product.id) {
+                    reservationService.addElement(product.id);
+                }
+            })
+
+        };
+    });
+
+    console.log(reservationService.getData());
 });
 
-appControllers.controller('orderController', function($rootScope, $scope){
+appControllers.controller('orderController', function($rootScope, $scope, reservationService, dataService){
     $rootScope.pageTitle = "Zamówienie";
 
-    $scope.order = [{name: "Produkt 1"},{name: "Produkt 2"}];
+    dataService.getData('products').then((response) => {
+        $scope.products = response.data;
+        return response.data;
+    })
+    .then(products => {
+        let orderProducts = [];
+        angular.forEach(reservationService.getData(), (order, orderKey) => {
+            angular.forEach(products, (product, productKey) => {
+                if(product.id == orderKey ) {
+                    product.count = order;
+                    orderProducts.push(product);
+                }
+            })
+        })
+        $scope.order = orderProducts;
+    });
+
+    $scope.removeElement = (element) => {
+        reservationService.removeElement(element);
+        $scope.order = reservationService.getData();
+    }
 });
 
 appControllers.controller('contactController', function($rootScope, $scope, dataService){
     $rootScope.pageTitle = "Kontakt";
 
-    dataService.getData('contacts.json').then((response) => {
+    dataService.getData('contacts').then((response) => {
         $scope.contacts = response.data;
     });
 });
 
-appControllers.controller('tableReservationController', function($rootScope, $scope, dataService){
+appControllers.controller('tableReservationController', function($rootScope, $scope, dataService, $http){
     $rootScope.pageTitle = "Rezerwacja stolika";
 
-    dataService.getData('tables.json').then((response) => {
+    dataService.getData('tables').then((response) => {
         $scope.tables = response.data;
     });
+
+    $scope.submit = () => {
+        if($scope.firstname && $scope.surname && $scope.phone && $scope.date && $scope.time && $scope.table && $scope.accept) {
+            const newReservation = {
+                firstname: $scope.firstname,
+                surname: $scope.surname,
+                phone: $scope.phone,
+                date: $scope.date + " " + $scope.time,
+                tableId: $scope.table
+            }
+            $http.post('/reservation', newReservation)
+                .then((response) => {
+                    $scope.disableSubmit = true;
+                    console.log(response.data);
+                });
+        }
+    }
 
 });
 
 appControllers.controller('productDetailController', function($rootScope, $scope, dataService, $routeParams){
-    dataService.getData('products.json').then((response) => {
+    dataService.getData('products').then((response) => {
         var products = response.data;
         var product = {};
         angular.forEach(products, (value, key) => {
@@ -66,13 +119,13 @@ appControllers.controller('productDetailController', function($rootScope, $scope
 
 // fragment controllers
 appControllers.controller('slidesController', function($scope, dataService) {
-    dataService.getData('slides.json').then((response) => {
+    dataService.getData('slides').then((response) => {
         $scope.slides = response.data;
     });
 });
 
 appControllers.controller('productsController', function($scope, dataService) {
-    dataService.getData('products.json').then((response) => {
+    dataService.getData('products').then((response) => {
         $scope.products = response.data;
     });
 })

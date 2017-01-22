@@ -40,11 +40,21 @@ module.exports = (mongoose) => {
     })
     const Contact = mongoose.model('Contact', contact);
 
+    const reservation = new Schema({
+        firstname: {type:String, required: true},
+        surname: {type:String, required: true},
+        phone: {type:String, required: true},
+        date: {type: String, required: true},
+        tableId: {type: String, required: true}
+    })
+    const Reservation = mongoose.model('Reservation', reservation)
+
     return {
         Slide: Slide,
         Table: Table,
         Product: Product,
-        Contact: Contact
+        Contact: Contact,
+        Reservation: Reservation
     };
 
 }
