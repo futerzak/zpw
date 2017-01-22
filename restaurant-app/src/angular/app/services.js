@@ -5,3 +5,5 @@ appServices.service('dataService', function($http) {
         return $http.get('temporary-data/' + path); // this will return a promise to controller
     }
 });
+
+// appServices.
