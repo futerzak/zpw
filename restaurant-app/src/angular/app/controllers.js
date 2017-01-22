@@ -1,18 +1,18 @@
 var appControllers = angular.module('appControllers', []);
 
+// page controllers
 appControllers.controller('homeController', function($rootScope, $scope, dataService){
     $rootScope.pageTitle = "Strona domowa";
 
     dataService.getData('products.json').then((response) => {
         $scope.products = response.data;
     });
-
-    dataService.getData('slides.json').then((response) => {
-        $scope.slides = response.data;
-    });
-
     // $dialog.dialog({}).open('views/home/comments.html');
 
+});
+
+appControllers.controller('menuController', function(){
+    return;
 });
 
 appControllers.controller('orderController', function($rootScope, $scope){
@@ -31,10 +31,6 @@ appControllers.controller('contactController', function($rootScope, $scope, data
 
 appControllers.controller('tableReservationController', function($rootScope, $scope, dataService){
     $rootScope.pageTitle = "Rezerwacja stolika";
-
-    dataService.getData('slides.json').then((response) => {
-        $scope.slides = response.data;
-    });
 
     dataService.getData('tables.json').then((response) => {
         $scope.tables = response.data;
@@ -66,4 +62,17 @@ appControllers.controller('productDetailController', function($rootScope, $scope
         $scope.percent = 100 * (value / $scope.max);
     };
 
+});
+
+// fragment controllers
+appControllers.controller('slidesController', function($scope, dataService) {
+    dataService.getData('slides.json').then((response) => {
+        $scope.slides = response.data;
+    });
+});
+
+appControllers.controller('productsController', function($scope, dataService) {
+    dataService.getData('products.json').then((response) => {
+        $scope.products = response.data;
+    });
 })

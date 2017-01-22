@@ -8,12 +8,16 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.10.2",
-    "socket.io": "^1.7.2",
-    "mongodb": "^2.2.19"
+    "mongoose": "^4.7.7",
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   },
   "scripts": {
-    "start": "npm install && node index.js"
+    "start": "npm install && nodemon index.js"
   },
   "engines": {
     "node": ">= 0.10.0"
