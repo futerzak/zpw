@@ -1,4 +1,4 @@
-module.exports = (app, models) => {
+module.exports = (app, models, io) => {
     app.get('/products', (req, res) => {
         models.Product.find({}, (err, products) => {
             if(err) throw err;
@@ -41,7 +41,7 @@ module.exports = (app, models) => {
             phone: params.phone,
             date: params.date,
             tableId: params.tableId,
-            order: [] //params.order [TODO] tutaj coś nie kąsa :/
+            order: params.order
         });
 
         newReservation.save(err => {
@@ -63,14 +63,27 @@ module.exports = (app, models) => {
         })
         models.Product.findByIdAndUpdate(req.body.produtId,
             {$push: {"comments": newComment}},
-            {safe: true, new: true},
+            {safe: true, upsert: true, new: true},
             (err, model) => {
                 console.log(err);
             }
         )
+        io.sockets.send('CommentAdded');
     })
 
-    app.get('/admin/add-product', (req, res) => {
+    app.post('/admin/product', (req, res) => {
+        const newProduct = models.Product({
+            name: req.body.name,
+            price: req.body.price,
+            desc: req.body.desc,
+            comments: [],
+            stars: 5,
+            thumbnailUrl: req.body.thumbnailUrl,
+            imageUrl: req.body.imageUrl
+        });
+        newProduct.save(err => {
+            if(err) throw err;
+        })
         res.json({message: "success"})
     })
 

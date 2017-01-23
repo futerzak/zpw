@@ -22,5 +22,9 @@ restaurantAdminApp.config(['$routeProvider', ($routeProvider) => {
             templateUrl: '/admin/views/order-detail.html',
             controller: 'orderDetailController'
         })
+        .when('/add-product', {
+            templateUrl: '/admin/views/product-add.html',
+            controller: 'addProductController'
+        })
         .otherwise({redirectTo: '/'});
 }]);

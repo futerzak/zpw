@@ -10,7 +10,7 @@ appServices.service('dataService', function($http) {
 });
 
 appServices.service('reservationService', function() {
-    this.data = [];
+    this.data = {};
 
     return {
         getData: () => {
@@ -29,8 +29,39 @@ appServices.service('reservationService', function() {
         removeElement: (element) => {
             this.data[element]--;
             if(this.data[element] <= 0){
-                this.data.splice(this.data.indexOf(element), 1);
+                delete this.data[element];
             }
         }
     }
 })
+
+appServices.factory('socket', ['$rootScope', function ($rootScope) {
+    var socket = io.connect('http://localhost');
+
+    return {
+        on: function (eventName, callback) {
+            function wrapper() {
+            var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            }
+
+            socket.on(eventName, wrapper);
+
+            return function () {
+            socket.removeListener(eventName, wrapper);
+            };
+        },
+        emit: function (eventName, data, callback) {
+            socket.emit(eventName, data, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    if(callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            });
+        }
+    };
+}]);

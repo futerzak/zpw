@@ -26,7 +26,13 @@ module.exports = (mongoose) => {
         name: {type: String, required: true},
         price: {type: Number, required: true},
         desc: String,
-        comments: [{type: Object, ref: 'Commment'}],
+        comments: [new Schema({
+            contents: String,
+            who: {type: String, required: true},
+            show: Boolean,
+            date: Date,
+            rating: {type: Number, required: true}
+        })],
         stars: Number,
         thumbnailUrl: {type: String, required: true},
         imageUrl: {type: String, required: true}
@@ -41,7 +47,7 @@ module.exports = (mongoose) => {
     const Contact = mongoose.model('Contact', contact);
 
     const dish = new Schema({
-        productId: Number,
+        productId: String,
         count: Number
     });
     const Dish = mongoose.model('Dish', dish)
@@ -52,7 +58,7 @@ module.exports = (mongoose) => {
         phone: {type:String, required: true},
         date: {type: String, required: true},
         tableId: {type: String, required: true},
-        order: [{type: Object, ref: 'Dish'}]
+        order: [new Schema({productId: String, count: Number})]
     })
     const Reservation = mongoose.model('Reservation', reservation)
 

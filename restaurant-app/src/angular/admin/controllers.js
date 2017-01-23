@@ -28,10 +28,17 @@ appControllers.controller('productEditController', function($rootScope, $scope, 
         });
 
     $scope.submit = () => {
-        dataService.sendData('/admin/product', product)
-            .then(response => {
-                console.log(response);
-            });
+        dataService.sendData('/admin/product', {
+            name: $scope.product.name,
+            price: $scope.product.price,
+            desc: $scope.product.desc,
+            stars: $scope.product.stars,
+            thumbnailUrl: $scope.product.thumbnailUrl,
+            imageUrl: $scope.product.imageUrl
+        })
+        .then(response => {
+            console.log(response);
+        });
     }
 })
 
@@ -48,6 +55,9 @@ appControllers.controller('ordersController', function($rootScope, $scope, dataS
 appControllers.controller('orderDetailController', function($rootScope, $scope, dataService, $routeParams){
     $rootScope.pageTitle = "Szczegóły zamówienia";
 
+    // dataService.getData('/products').then(response => {
+    //     return response.data;
+    // })
 
     dataService.getData('/admin/orders')
         .then(response => {
@@ -58,3 +68,21 @@ appControllers.controller('orderDetailController', function($rootScope, $scope, 
             })
         });
 })
+
+appControllers.controller('addProductController', function($rootScope, $scope, dataService, $routeParams) {
+    $rootScope.pageTitle = "Dodaj produkt";
+
+    $scope.submit = () => {
+        if($scope.product.name && $scope.product.price) {
+            dataService.sendData('/admin/product', {
+                name: $scope.product.name,
+                price: $scope.product.price,
+                desc: $scope.product.desc,
+                stars: $scope.product.stars,
+                thumbnailUrl: $scope.product.thumbnailUrl,
+                imageUrl: $scope.product.imageUrl
+            })
+        }
+    }
+
+});

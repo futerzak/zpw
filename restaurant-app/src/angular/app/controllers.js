@@ -19,9 +19,10 @@ appControllers.controller('menuController', function($scope, reservationService,
     })
     .then((products) => {
         $scope.addToCart = (productId) => {
+            console.log(productId);
             angular.forEach(products, (product, key) => {
-                if(productId == product.id) {
-                    reservationService.addElement(product.id);
+                if(productId == product._id) {
+                    reservationService.addElement(product._id);
                 }
             })
 
@@ -41,7 +42,7 @@ appControllers.controller('orderController', function($rootScope, $scope, reserv
         let orderProducts = [];
         angular.forEach(reservationService.getData(), (order, orderKey) => {
             angular.forEach(products, (product, productKey) => {
-                if(product.id == orderKey ) {
+                if(product._id == orderKey ) {
                     product.count = order;
                     orderProducts.push(product);
                 }
@@ -59,7 +60,7 @@ appControllers.controller('orderController', function($rootScope, $scope, reserv
             let orderProducts = [];
             angular.forEach(reservationService.getData(), (order, orderKey) => {
                 angular.forEach(products, (product, productKey) => {
-                    if(product.id == orderKey ) {
+                    if(product._id == orderKey ) {
                         product.count = order;
                         orderProducts.push(product);
                     }
@@ -113,7 +114,7 @@ appControllers.controller('tableReservationController', function($rootScope, $sc
 
 });
 
-appControllers.controller('productDetailController', function($rootScope, $scope, dataService, $routeParams){
+appControllers.controller('productDetailController', function($rootScope, $scope, dataService, $routeParams, socket){
     dataService.getData('/products').then((response) => {
         var products = response.data;
         var product = {};
@@ -146,6 +147,24 @@ appControllers.controller('productDetailController', function($rootScope, $scope
         }
     });
 
+    socket.on('message', function (message) {
+        switch (message) {
+            case "CommentAdded":
+            dataService.getData('/products').then((response) => {
+                var products = response.data;
+                var product = {};
+                angular.forEach(products, (value, key) => {
+                    if(value._id === $routeParams.productId){
+                        product = value;
+                    }
+                });
+                $rootScope.pageTitle = product.name;
+
+                $scope.product = product;
+            });
+            break;
+        }
+    });
 
     $scope.rate = null;
     $scope.max = 5;

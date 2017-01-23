@@ -20,10 +20,10 @@
             </div>
             <div class="form-group">
                 <label>dania</label>
-                <ol ng-repeat="dish in order.order">
-                    <li>{{dish.id}}</li>
-                    <li>{{dish.count}}</li>
-                </ol>
+                <ul ng-repeat="dish in order.order">
+                    <li>id potrawy: {{dish._id}}</li>
+                    <li>ilość: {{dish.count}}</li>
+                </ul>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn" name="button">zapisz</button>
