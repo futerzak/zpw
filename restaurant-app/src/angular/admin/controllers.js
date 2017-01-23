@@ -1,9 +1,16 @@
 var appControllers = angular.module('appControllers', []);
 
-appControllers.controller('homeController', function($rootScope, $scope){
+appControllers.controller('homeController', function($location, $rootScope, $scope){
     $rootScope.pageTitle = "Strona domowa";
 
-
+    $scope.submit = () => {
+        if($scope.login && $scope.pass) {
+            if ($scope.login == "futer" && $scope.pass == '123123' || $rootScope.logged == true) {
+                $rootScope.logged = true;
+                $location.path('#/');
+            }
+        }
+    }
 });
 
 appControllers.controller('menuController', function($rootScope, $scope, dataService){

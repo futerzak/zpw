@@ -86,6 +86,26 @@ appControllers.controller('tableReservationController', function($rootScope, $sc
         $scope.tables = response.data;
     });
 
+
+
+    // $scope.$watch('date', function(){
+    //     if($scope.date && $scope.time) {
+    //         dataService.getData('/tables').then((response) => {
+    //             angular.forEach(response.data, (table, key) => {
+    //             return;
+    //             })
+    //
+    //             $scope.tables = response.data;
+    //     }
+    //     });
+    // });
+    //
+    // $scope.$watch('time', function() {
+    //     dataService.getData('/tables').then((response) => {
+    //         $scope.tables = response.data;
+    //     });
+    // })
+
     $scope.submit = () => {
         if($scope.firstname && $scope.surname && $scope.phone && $scope.date && $scope.time && $scope.table && $scope.accept) {
 
@@ -186,5 +206,21 @@ appControllers.controller('slidesController', function($scope, dataService) {
 appControllers.controller('productsController', function($scope, dataService) {
     dataService.getData('/products').then((response) => {
         $scope.products = response.data;
+
+        // $scope.currentPage = 1;
+        // $scope.numPerPage = 10;
+        // $scope.maxSize = 5;
+        //
+        // $scope.numPages = function () {
+        //     return Math.ceil($scope.todos.length / $scope.numPerPage);
+        // };
+        //
+        // $scope.$watch("currentPage + numPerPage", function() {
+        //     var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+        //     var end = begin + $scope.numPerPage;
+        //
+        //     $scope.product = response.data.slice(begin, end);
+        // });
+
     });
 })
