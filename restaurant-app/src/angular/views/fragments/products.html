@@ -5,10 +5,10 @@
             <img ng-src="{{product.thumbnailUrl}}" alt="{{product.name}}" class="img-responsive">
             <div class="caption">
                 <h4 class="pull-right">${{product.price}}</h4>
-                <h4><a href="#/detail/{{product.id}}">{{product.name}}</a>
+                <h4><a href="#/detail/{{product._id}}">{{product.name}}</a>
                 </h4>
                 <!-- <a href="/add-product/{{product.id}}" > -->
-                    <span ng-click="addToCart(product.id)" class="glyphicon glyphicon-plus pull-right"></span>
+                    <span ng-click="addToCart(product._id)" class="glyphicon glyphicon-plus pull-right"></span>
                 <!-- </a> -->
                 <!-- <span class="glyphicon glyphicon-ok pull-right"></span> -->
                 <p>{{product.desc}}</p>

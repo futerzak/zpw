@@ -23,11 +23,15 @@
 <hr>
 <div class="well">
     <h4>Dodaj komentarz:</h4>
-    <form role="form">
+    <form role="form" ng-submit="submit()">
         <div class="form-group">
-            <textarea class="form-control" rows="3"></textarea>
+            <label for="who">Nick:</label>
+            <input ng-model="who" type="text" name="nick" >
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <textarea ng-model="contents" class="form-control" rows="3"></textarea>
+        </div>
+        <button ng-disabled="{{disableSubmit}}" type="submit" class="btn btn-primary">Submit</button>
         <label>Oceń:</label>
 
         <span uib-rating ng-model="rate" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>

@@ -103,7 +103,7 @@ appControllers.controller('tableReservationController', function($rootScope, $sc
                 tableId: $scope.table,
                 order: dish
             }
-            $dataService.sendData('/reservation', newReservation)
+            dataService.sendData('/reservation', newReservation)
                 .then((response) => {
                     $scope.disableSubmit = true;
                     console.log(response.data);
@@ -118,7 +118,7 @@ appControllers.controller('productDetailController', function($rootScope, $scope
         var products = response.data;
         var product = {};
         angular.forEach(products, (value, key) => {
-            if(value.id === $routeParams.productId){
+            if(value._id === $routeParams.productId){
                 product = value;
             }
         });
@@ -126,6 +126,24 @@ appControllers.controller('productDetailController', function($rootScope, $scope
 
         $scope.product = product;
 
+        $scope.submit = () => {
+            if($scope.rate && $scope.who) {
+                const newComment = {
+                    contents: $scope.contents,
+                    who: $scope.who,
+                    show: true,
+                    date: new Date(),
+                    rating: $scope.rate,
+                    productId: product._id
+                }
+                console.log(newComment);
+                dataService.sendData('/comment', newComment)
+                    .then(response => {
+                        $scope.disableSubmit = true;
+                        console.log(response.data);
+                    });
+            }
+        }
     });
 
 

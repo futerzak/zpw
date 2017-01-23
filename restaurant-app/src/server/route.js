@@ -41,7 +41,7 @@ module.exports = (app, models) => {
             phone: params.phone,
             date: params.date,
             tableId: params.tableId,
-            order: [] //params.order [TODO] tutaj coś nie kąsa :/ 
+            order: [] //params.order [TODO] tutaj coś nie kąsa :/
         });
 
         newReservation.save(err => {
@@ -50,4 +50,33 @@ module.exports = (app, models) => {
             res.send({message: "success"})
         });
     });
+
+    app.post('/comment', (req, res) => {
+        console.log(req.body);
+
+        const newComment = models.Comment({
+            contents: req.body.contents,
+            who: req.body.who,
+            show: req.body.show,
+            date: req.body.date,
+            rating: req.body.rating
+        })
+        models.Product.findByIdAndUpdate(req.body.produtId,
+            {$push: {"comments": newComment}},
+            {safe: true, new: true},
+            (err, model) => {
+                console.log(err);
+            }
+        )
+    })
+
+    app.get('/admin/add-product', (req, res) => {
+        res.json({message: "success"})
+    })
+
+    app.get('/admin/orders', (req, res) => {
+        models.Reservation.find({}, (err, reservations) => {
+            res.json(reservations);
+        });
+    })
 }

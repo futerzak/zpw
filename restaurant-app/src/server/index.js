@@ -31,15 +31,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-  });
-
-  socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
   });
 
 });
-
 
 app.listen(80, () => {
     console.warn("App run on port 80");

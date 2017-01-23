@@ -15,7 +15,7 @@ module.exports = (mongoose) => {
 
     const comment = new Schema({
         contents: String,
-        who: String,
+        who: {type: String, required: true},
         show: Boolean,
         date: Date,
         rating: {type: Number, required: true}
@@ -61,7 +61,8 @@ module.exports = (mongoose) => {
         Table: Table,
         Product: Product,
         Contact: Contact,
-        Reservation: Reservation
+        Reservation: Reservation,
+        Comment: Comment
     };
 
 }
