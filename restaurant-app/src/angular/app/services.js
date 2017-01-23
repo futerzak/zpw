@@ -1,8 +1,11 @@
 var appServices = angular.module('appServices', []);
 
 appServices.service('dataService', function($http) {
-    this.getData = function(path){
-        return $http.get('/' + path); // this will return a promise to controller
+    this.getData = (path) => {
+        return $http.get(path); // this will return a promise to controller
+    }
+    this.sendData = (path, data) => {
+        return $http.post(path, data);
     }
 });
 
@@ -22,22 +25,12 @@ appServices.service('reservationService', function() {
             } else {
                 this.data[element]++;
             }
-            // this.data.push(element);
         },
         removeElement: (element) => {
-            // let tempData = [];
-            // angular.forEach(this.data, (object, key) => {
-            //     if(element.id !== object.id) {
-            //         tempData.push(object);
-            //     }
-            // });
-            // this.data = tempData;
-            console.log("element",element, this.data);
             this.data[element]--;
             if(this.data[element] <= 0){
                 this.data.splice(this.data.indexOf(element), 1);
             }
-            console.log(this.data);
         }
     }
 })

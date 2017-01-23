@@ -40,7 +40,8 @@ module.exports = (app, models) => {
             surname: params.surname,
             phone: params.phone,
             date: params.date,
-            tableId: params.tableId
+            tableId: params.tableId,
+            order: [] //params.order [TODO] tutaj coś nie kąsa :/ 
         });
 
         newReservation.save(err => {
