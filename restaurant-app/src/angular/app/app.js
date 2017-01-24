@@ -6,6 +6,10 @@ restaurantApp.config(['$routeProvider', ($routeProvider) => {
             templateUrl: '/views/home.html',
             controller: 'homeController'
         })
+        .when('/menu', {
+            templateUrl: 'views/menu.html',
+            controller: 'menuController'
+        })
         .when('/order', {
             templateUrl: 'views/order.html',
             controller: 'orderController'
